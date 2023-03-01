@@ -4,7 +4,7 @@ let currentYeat = new Date().getFullYear();
 
 <template>
   <div
-    class="flex justify-center items-center h-[150px] bg-slate-500 border-2 border-t-neutral-50 mt-40"
+    class="flex justify-center items-center h-[150px] bg-slate-500 mt-40 sticky bottum-0"
   >
     <footer class="text-2xl text-slate-200">
       © {{ currentYeat }}

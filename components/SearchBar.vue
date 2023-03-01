@@ -1,23 +1,14 @@
 <script setup>
-import products from "@/data/data.json";
+const { capitalizeSentence } = useUtilities();
+const emit = defineEmits(["searching"]);
 
-const categorySet = new Set();
-products.forEach((product) => {
-  categorySet.add(product.category);
+const props = defineProps({
+  categories: Array,
+  model: Object,
 });
 
-const capitarize = (word) => {
-  const arr = word.split(" ");
-  let str = "";
-  arr.forEach((w) => {
-    str += w.charAt(0).toUpperCase() + w.slice(1) + " ";
-  });
-  return str;
-};
-
-const filterProducts = (category) => {
-  console.log("Changes");
-  console.log(category);
+const searchClicked = (event) => {
+  emit("searching", {});
 };
 </script>
 
@@ -28,33 +19,35 @@ const filterProducts = (category) => {
     >
       <select
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 sm:col-span-3 lg:col-span-1"
+        @change="model['category'] = $event.target.value"
       >
         >
-        <option selected>Choose category</option>
-        <option
-          v-for="category in categorySet"
-          @change="filterProducts(category)"
-        >
-          {{ capitarize(category) }}
+        <option selected value="">Choose category</option>
+        <option v-for="category in categories" :value="category">
+          {{ capitalizeSentence(category) }}
         </option>
       </select>
       <input
         type="number"
         placeholder="Minimum Price"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 sm:col-start-4 sm:col-span-2 lg:row-start-1 lg:col-start-2 lg:col-span-1"
+        @change="model['minPrice'] = $event.target.value"
       />
       <input
         type="number"
         placeholder="Maximum Price"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 sm:col-start-6 sm:col-span-2 lg:row-start-1 lg:col-start-3 lg:col-span-1"
+        @change="model['maxPrice'] = $event.target.value"
       />
       <input
         type="text"
         placeholder="Search..."
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 sm:row-start-2 sm:col-span-6 lg:row-start-1 lg:col-start-4 lg:col-span-2"
+        @change="model['search'] = $event.target.value.trim()"
       />
       <button
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 sm:col-start-7"
+        @click="searchClicked()"
       >
         Search
       </button>

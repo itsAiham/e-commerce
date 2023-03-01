@@ -15,10 +15,8 @@ module.exports = {
       mynerve: "Mynerve, cursive",
       biryani: "Biryani, sans-serif",
       sunrise: "Waiting for the Sunrise, cursive",
-      // calligraffitti: "Waiting for the Sunrise, cursive",
+      zenAntique: "Zen Antique",
     },
   },
   plugins: [],
 };
-
-// @import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');

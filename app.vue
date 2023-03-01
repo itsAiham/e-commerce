@@ -1,9 +1,7 @@
 <template>
   <div>
-    <NavBar />
-    <HeroImg />
-    <SearchBar />
-    <Cards />
-    <Footer />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

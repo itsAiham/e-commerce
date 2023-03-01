@@ -2,8 +2,11 @@
 export default defineNuxtConfig({
     modules: [
         '@nuxtjs/tailwindcss',
-        '@nuxt/image-edge'
-    ],image: {
+        '@nuxt/image-edge',
+        '@vueuse/nuxt',
+         
+    ],
+    image: {
         dir: 'assets',
     },
     css: [

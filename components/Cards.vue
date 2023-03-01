@@ -1,5 +1,7 @@
 <script setup>
-import products from "@/data/data.json";
+const props = defineProps({
+  products: Array,
+});
 </script>
 
 <template>
