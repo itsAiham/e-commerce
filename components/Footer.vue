@@ -4,11 +4,14 @@ let currentYeat = new Date().getFullYear();
 
 <template>
   <div
-    class="flex justify-center items-center h-[150px] bg-slate-500 mt-40 sticky bottum-0"
+    class="flex justify-center items-center h-[150px] bg-slate-500 mt-40 bottom-0 w-[100%]"
   >
-    <footer class="text-2xl text-slate-200">
-      © {{ currentYeat }}
-      <a target="_blank" href="https://github.com/itsAiham">itsAiham </a>
-    </footer>
+    <div class="">
+      <footer class="sm:text-sm text-slate-200">
+        <a target="_blank" href="https://github.com/itsAiham">
+          © {{ currentYeat }} itsAiham
+        </a>
+      </footer>
+    </div>
   </div>
 </template>

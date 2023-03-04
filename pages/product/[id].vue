@@ -9,6 +9,6 @@ definePageMeta({
 
 <template>
   <div>
-    <Product :product="product" />
+    <Product v-if="product" :product="product" />
   </div>
 </template>

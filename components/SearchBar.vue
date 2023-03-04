@@ -7,7 +7,7 @@ const props = defineProps({
   model: Object,
 });
 
-const searchClicked = (event) => {
+const searchClicked = () => {
   emit("searching", {});
 };
 </script>
