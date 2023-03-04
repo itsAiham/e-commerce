@@ -19,8 +19,8 @@ for (let i of await products?.value) {
   categorySet.add(i.category);
 }
 
-// the props of the function only to change focus on search-btn
-const onSearchClicked = (model) => {
+// the props of the function only to change focus to search-btn
+const onSearchClicked = async (model) => {
   // no validating if minPrice > maxPrice
   if (!isNaN(model.minPrice) || !isNaN(model.maxPrice)) return;
 };

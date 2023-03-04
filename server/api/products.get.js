@@ -3,10 +3,13 @@ export default defineEventHandler(async (event) => {
 
   let data = await $fetch("https://fakestoreapi.com/products");
   let filtered = data;
+  const arr = [];
 
-  if (category.trim()) {
+  // console.log(getQuery(event));
+
+  if (category) {
     filtered = data.filter((product) => {
-      return product.category === category.trim().toLowerCase();
+      return product.category.trim() === category.trim().toLowerCase();
     });
   }
 
@@ -21,8 +24,6 @@ export default defineEventHandler(async (event) => {
       return product.price <= parseFloat(maxPrice);
     });
   }
-
-  const arr = [];
 
   if (search) {
     filtered = filtered.filter((product) => {
@@ -45,6 +46,8 @@ export default defineEventHandler(async (event) => {
 
     filtered = arr;
   }
+
+  // console.log(filtered.length);
 
   return filtered;
 });

@@ -1,5 +1,9 @@
 <script setup>
-const nInCard = useCounter();
+const card = useLocalStorage("card", {});
+
+const nInCard = computed(() => {
+  return card?.value.totalProducts || 0;
+});
 </script>
 
 <template>
@@ -19,10 +23,11 @@ const nInCard = useCounter();
       />
     </svg>
 
-    <!-- <div
-      class="rounded-full border-slate-100 border-2 p-1 text-sm absolute bg-red-600 text-slate-50 w-6 h-6 text-center left-2 top-4"
+    <div
+      v-if="nInCard"
+      class="rounded-full border-slate-100 border-2 text-sm absolute bg-red-600 text-slate-50 w-6 h-6 text-center left-2 top-4"
     >
       {{ nInCard }}
-    </div> -->
+    </div>
   </div>
 </template>

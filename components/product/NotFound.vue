@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div
     class="h-[300px] flex flex-col justify-items items-center text-xl sm:text-3xl font-biryani mt-5"

@@ -1,4 +1,8 @@
 import { useLocalStorage } from "@vueuse/core";
+const card = useLocalStorage("card", {
+  items: [],
+});
+const PRECISION = 100; // rounding float to 2-digit xx,xx   asdasdasdasdasdasdda
 
 export const useUtilities = () => {
   function capitalizeSentence(sentence) {
@@ -11,20 +15,41 @@ export const useUtilities = () => {
   }
 
   function addToCard(item) {
-    const card = useLocalStorage("card", {});
-
     card.value = {
       ...card.value,
       totalProducts: card.value.totalProducts + 1 || 1,
+      totalPrice:
+        Math.round(
+          (card.value.totalPrice + parseFloat(item.price) ||
+            parseFloat(item.price)) * PRECISION
+        ) / PRECISION,
       [item.id]: {
+        title: item.title,
+        image: item.image,
         amount: card.value[item.id]?.amount + 1 || 1,
-        receivedPrice: item.price,
+        reservingPrice: item.price,
       },
     };
+  }
+
+  function removeFromCart(item) {
+    console.log(item.value);
+    card.value = {
+      ...card.value,
+      totalPrice:
+        Math.round(
+          (card.value.totalPrice -
+            card.value[item].amount * card.value[item].reservingPrice) *
+            PRECISION
+        ) / PRECISION,
+      totalProducts: card.value.totalProducts - card.value[item].amount,
+    };
+    delete card.value[item];
   }
 
   return {
     capitalizeSentence,
     addToCard,
+    removeFromCart,
   };
 };

@@ -4,10 +4,10 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         '@nuxt/image-edge',
         '@vueuse/nuxt',
-         
     ],
     image: {
-        dir: 'assets',
+        dir: 'static/images',
+        
     },
     css: [
         '@/assets/css/tailwind.css',
