@@ -1,15 +1,3 @@
-<script setup>
-// const { handleLogin } = useUtilities();
-const user = useSupabaseUser();
-const supabase = useSupabaseAuthClient();
-
-const handleLogin = () => {
-  supabase.auth.signInWithOAuth({
-    provider: "google",
-  });
-};
-</script>
-
 <template>
   <div class="relative">
     <header
