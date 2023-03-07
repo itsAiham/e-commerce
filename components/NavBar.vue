@@ -9,8 +9,8 @@
       >
         <h1>Ecom.</h1>
       </NuxtLink>
-      <div class="flex gap-4 sm:gap-10 w-[100%] justify-end mr-5">
-        <AuthButtons class="mr-6" />
+      <div class="flex gap-4 sm:gap-10 w-[100%] justify-end sm:mr-5">
+        <AuthButtons class="mr-1 sm:mr-6" />
 
         <NuxtLink to="/cart">
           <CartIcon />
