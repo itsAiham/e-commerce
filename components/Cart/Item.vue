@@ -1,6 +1,8 @@
 <script setup>
 import { useLocalStorage } from "@vueuse/core";
 const { removeFromCart } = useUtilities();
+const user = useSupabaseUser();
+const supabase = useSupabaseAuthClient();
 
 const card = useLocalStorage("card", {});
 const items = computed(() => {
@@ -10,18 +12,36 @@ const items = computed(() => {
 const removeProducts = () => {
   card.value = {};
 };
+
+const onPaymentClicked = async () => {
+  card.value.userId = user.value.id;
+  const { data, error, pending } = await useFetch(`/api/products`, {
+    method: "POST",
+    body: card.value,
+  });
+
+  // no showing error or pening currently
+  if (window.confirm("Let's pretend that you paid and got your stuff 😉")) {
+    console.log(data);
+    removeProducts();
+    navigateTo("/");
+  }
+};
+
+function handleLogin() {
+  supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+}
 </script>
 
 <template>
   <div class="m-0 p-0 md:w-[70%] m-auto min-h-screen">
-    <div
-      v-if="!card?.totalProducts"
-      class="h-[400px] flex flex-row justify-center m-7 p-5 text-lg sm:text-"
-    >
-      <h2 class="xl">Nothing in your cart 😑</h2>
-    </div>
-
-    <div v-for="(item, id) in items" class="">
+    <EmptyList
+      :nOfItem="card?.totalProducts"
+      :msg="'Nothing in your cart 😑'"
+    />
+    <div v-for="(item, id) in items">
       <div
         v-if="!isNaN(id)"
         class="m-4 sm:m-7 p-1 sm:text-md font-zenAntique grid grid-rows-6 grid-cols-8 h-[200px] bg-gray-200 rounded-xl"
@@ -77,8 +97,19 @@ const removeProducts = () => {
         >
           Empty Cart
         </button>
-        <button class="border-2 border-amber-500 m-5 p-4 sm:w-[30%] rounded-xl">
+        <button
+          v-if="!user"
+          class="border-2 border-amber-500 m-5 p-4 sm:w-[30%] rounded-xl"
+          @click="handleLogin"
+        >
           Login
+        </button>
+        <button
+          v-else
+          @click="onPaymentClicked"
+          class="border-2 border-amber-500 m-5 p-4 sm:w-[30%] rounded-xl"
+        >
+          Payment
         </button>
       </div>
     </div>

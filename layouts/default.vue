@@ -19,7 +19,7 @@ for (let i of await products?.value) {
   categorySet.add(i.category);
 }
 
-// the props of the function only to change focus to search-btn
+// the props of button is only to change focus to search-btn
 const onSearchClicked = async (model) => {
   // no validating if minPrice > maxPrice
   if (!isNaN(model.minPrice) || !isNaN(model.maxPrice)) return;
@@ -36,7 +36,7 @@ const onSearchClicked = async (model) => {
       :categories="[...categorySet].sort()"
     />
     <Cards :products="products" v-if="products.length" />
-    <ProductNotFound v-else />
+    <EmptyList v-else :msg="'Obs😕 Nothing found! '" />
     <Footer />
   </div>
 </template>

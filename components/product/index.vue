@@ -8,9 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    class="sm:grid sm:grid-cols-10 md:grid-rows-2 mt-6 flex flex-col items-center"
-  >
+  <div class="sm:grid sm:grid-cols-10 md:grid-rows-2 mt-6">
     <nuxt-img
       :src="product.image"
       class="object-contain col-start-3 col-end-6 h-[100%] w-[50%] sm:w-[100%]"

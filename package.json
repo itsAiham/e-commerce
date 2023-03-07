@@ -9,10 +9,13 @@
   },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27954023.4cee565",
+    "@nuxtjs/supabase": "^0.3.1",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "nuxt": "^3.2.2"
   },
   "dependencies": {
-    "@vueuse/nuxt": "^9.13.0"
+    "@prisma/client": "^4.11.0",
+    "@vueuse/nuxt": "^9.13.0",
+    "prisma": "^4.11.0"
   }
 }

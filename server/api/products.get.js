@@ -5,8 +5,6 @@ export default defineEventHandler(async (event) => {
   let filtered = data;
   const arr = [];
 
-  // console.log(getQuery(event));
-
   if (category) {
     filtered = data.filter((product) => {
       return product.category.trim() === category.trim().toLowerCase();
@@ -46,8 +44,6 @@ export default defineEventHandler(async (event) => {
 
     filtered = arr;
   }
-
-  // console.log(filtered.length);
 
   return filtered;
 });
