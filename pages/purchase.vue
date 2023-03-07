@@ -14,7 +14,7 @@ const { data: purchases, pending } = await useFetch("/api/purchase", {
 
 <template>
   <div>
-    <PurchasesTable :purchases="purchases" v-if="purchases" />
+    <PurchasesTable :purchases="purchases" v-if="purchases.length" />
     <EmptyList :msg="'You didn\'t buy anything yet!😳'" v-else />
   </div>
 </template>
