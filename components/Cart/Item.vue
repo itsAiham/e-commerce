@@ -15,14 +15,13 @@ const removeProducts = () => {
 
 const onPaymentClicked = async () => {
   card.value.userId = user.value.id;
-  const { data, error, pending } = await useFetch(`/api/products`, {
-    method: "POST",
-    body: card.value,
-  });
 
   // no showing error or pening currently
   if (window.confirm("Let's pretend that you paid and got your stuff 😉")) {
-    console.log(data);
+    await useFetch(`/api/products`, {
+      method: "POST",
+      body: card.value,
+    });
     removeProducts();
     navigateTo("/");
   }
